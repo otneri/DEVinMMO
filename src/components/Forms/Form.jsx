@@ -35,7 +35,9 @@ export const Form = () => {
  
     
     const saveComent = (valores) => {
-        localStorage.setItem("user", ("nome" , valores.fullName))
+        const pessoa = {'nome': valores.fullName, 'coment': valores.coment};
+        const pessoaJson = JSON.stringify(pessoa);
+        localStorage.setItem("pessoa", pessoaJson)
         
     }
 
