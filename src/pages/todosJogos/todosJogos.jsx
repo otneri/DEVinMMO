@@ -4,12 +4,14 @@ import { Paper } from "../../components/Paper/Paper";
 import { Paragraph } from "../../components/Paragraph/Paragraph";
 import axios from "axios";
 import { Botao } from "../../components/Botoes/Botao";
+import { useSelect } from "../../contexts/select/useSelect";
 
 
 
 export const ListagemJogosPage = () => {
   const [inicial, setInicial] = useState([]);
   const [jogos, setJogos] = useState([]);
+  const {select,setSelect} = useSelect()
 
   async function getListaJogos ()  {
 
@@ -31,14 +33,21 @@ export const ListagemJogosPage = () => {
       });
   };
 
-  useEffect(() => {
-    getListaJogos()
-
-  }, [])
-  
-  
   
  
+  useEffect(() => {
+    getListaJogos()
+    
+
+  }, [])
+
+  
+  const salvaSelectnaLocalStorage =  (jogo) => {
+    const selecionado = JSON.stringify(jogo)
+    const salvaselect = localStorage.setItem('select', selecionado)
+    
+    console.log(salvaselect);
+  }
  
   const handleChange = ({ target }) => {
     if (!target.value) {
@@ -71,7 +80,8 @@ export const ListagemJogosPage = () => {
                 <Paragraph>{jogo.title}</Paragraph>
                 <img src={jogo.thumbnail} alt="jogo" />
                 <Paragraph>{jogo.short_description}</Paragraph>
-                <Botao>Ver Mais</Botao>
+                <Botao handleClick={salvaSelectnaLocalStorage(jogo)}>Ver Mais</Botao>
+                
               </Paper>
             ))
         ) 

@@ -6,7 +6,6 @@ import {Input, InputError} from '../Inputs/InputComp'
 import {ConteinerInput} from '../Inputs/InputComp.styled'
 import { useForm } from "react-hook-form";
 import { Botao } from "../../components/Botoes/Botao";
-import {pegaComent} from '../../pages/detalhes/detalhes'
 import { useState } from "react";
 
 const validationSchema = yup.object({
@@ -19,6 +18,9 @@ const validationSchema = yup.object({
 })  
 
 export const Form = () => {
+    
+    const [coment, setComent] = useState([])
+
     const {
         handleSubmit,
         register,
@@ -37,20 +39,29 @@ export const Form = () => {
     const saveComent = (valores) => {
         const pessoa = {'nome': valores.fullName, 'coment': valores.coment};
         const pessoaJson = JSON.stringify(pessoa);
-        localStorage.setItem("pessoa", pessoaJson)
-        
+        coment.push(JSON.parse(pessoaJson))
+        console.log(coment);
+        localStorage.setItem("coments", JSON.stringify(coment))
     }
+
+    // const pegaComent = () => {
+    //     const pegaComent = localStorage.getItem('coments')  
+    //     const comentario = JSON.parse(pegaComent)
+    //     coment.push(comentario);
+    //     console.log(coment);
+    
+    //  }
 
     
 
 
       return (
         <div>
-        <FormStyle onSubmit={handleSubmit(saveComent, pegaComent, onError)}>
+        <FormStyle onSubmit={handleSubmit(saveComent,  onError)}>
             <ConteinerInput>
             <Paragraph>Nome: </Paragraph>
             {errors?.fullName?.type ? (
-                <InputErrorStyled
+                <InputError
                 {...register("fullName", { required: true })}
                 placeholder="Seu nome aqui"
                 id={"nome"}
@@ -69,7 +80,7 @@ export const Form = () => {
             <ConteinerInput>
             <Paragraph>E-mail:</Paragraph>
             {errors?.email?.type ? (
-                <InputErrorStyled
+                <InputError
                 {...register("email", { required: true })}
                 placeholder="exemplo@exemplo.com"
                 id={"email"}
@@ -88,7 +99,7 @@ export const Form = () => {
             <ConteinerInput>
             <Paragraph>Comentário:</Paragraph>
             {errors?.coment?.type ? (
-                <InputErrorStyled
+                <InputError
                 {...register("coment", { required: true })}
                 placeholder="deixe seu comentário!"
                 id={"coment"}
@@ -103,7 +114,7 @@ export const Form = () => {
 
             <SpanError>{errors?.email?.message}</SpanError>
             </ConteinerInput>
-            <Botao handleClick={handleSubmit(saveComent, pegaComent, onError)}>Postar comentário</Botao>
+            <Botao handleClick={handleSubmit(saveComent, onError)}>Postar comentário</Botao>
 
         </FormStyle>
     </div>
