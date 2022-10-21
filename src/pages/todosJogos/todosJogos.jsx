@@ -5,6 +5,7 @@ import { Paragraph } from "../../components/Paragraph/Paragraph";
 import axios from "axios";
 import { Botao } from "../../components/Botoes/Botao";
 import { useSelect } from "../../contexts/select/useSelect";
+import {Mmo} from '../../services/apiMMO'
 
 
 
@@ -42,12 +43,17 @@ export const ListagemJogosPage = () => {
   }, [])
 
   
-  const salvaSelectnaLocalStorage =  (jogo) => {
-    const selecionado = JSON.stringify(jogo)
-    const salvaselect = localStorage.setItem('select', selecionado)
+  function handleSalva  ({target})  {
+    const novoSelect = jogos?.filter(jogo => 
+      jogo.id == target.value
+    )
+    const salvaSelect = setSelect(novoSelect)
     
-    console.log(salvaselect);
+    
+    return salvaSelect;  
+    
   }
+  
  
   const handleChange = ({ target }) => {
     if (!target.value) {
@@ -80,7 +86,7 @@ export const ListagemJogosPage = () => {
                 <Paragraph>{jogo.title}</Paragraph>
                 <img src={jogo.thumbnail} alt="jogo" />
                 <Paragraph>{jogo.short_description}</Paragraph>
-                <Botao handleClick={salvaSelectnaLocalStorage(jogo)}>Ver Mais</Botao>
+                <Botao value={jogo.id} handleClick={handleSalva}>Ver Mais</Botao>
                 
               </Paper>
             ))

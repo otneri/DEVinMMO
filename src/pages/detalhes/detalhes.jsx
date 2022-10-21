@@ -37,12 +37,12 @@ export const DetalhesPage = () => {
             {comentarios.map((coment, id) => (
                 <Paper key={id}>
                     <h1>{coment.nome}</h1>
-                    <h1>{coment.comentario}</h1>
+                    <h1>{coment.coment}</h1>
                 </Paper>
-            )
+            ))}
 
             
-            }
+            
         
             <Form />
         

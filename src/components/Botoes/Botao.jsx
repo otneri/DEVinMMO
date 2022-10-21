@@ -8,9 +8,9 @@ import {
 
 import Proptypes from "prop-types";
 
-export const Botao = ({ children, handleClick, type, cordefundo }) => {
+export const Botao = ({ children, handleClick, type, cordefundo, value }) => {
   return (
-    <BotaoStyled onClick={handleClick} type={type} >
+    <BotaoStyled onClick={handleClick} type={type} value={value} >
       {children}
     </BotaoStyled>
   );
@@ -40,6 +40,7 @@ Botao.propTypes = {
   handleClick: Proptypes.func,
   cordefundo: Proptypes.string,
   type: Proptypes.string,
+  value: Proptypes.node
 };
 
 BotaoLogin.propTypes = {

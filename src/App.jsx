@@ -11,7 +11,7 @@ function App() {
   return (
     <ThemeProvider theme={temaPrincipal}>
         <SelectProvider>
-          <DetalhesPage/>
+          <ListagemJogosPage/>
         </SelectProvider>
       
     </ThemeProvider>

@@ -1,9 +1,8 @@
 import axios from "axios";
-import { useJogos } from "../contexts/useJogos";
 
 
- export const mmo = axios.create({
-    baseURL: `https://mmo-games.p.rapidapi.com`,
+ export const Mmo = axios.create({
+    baseURL: `https://mmo-games.p.rapidapi.com/games`,
   });
 
 // export async function getListaJogos ()  {
