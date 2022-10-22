@@ -28,12 +28,16 @@ export const DetalhesPage = () => {
     
    
 
-
+     console.log(select);
 
     return (
         <>
-            {/* <Paragraph>{select.title}</Paragraph> */}
-            <h1 onLoad={pegaComent()}>Olá</h1>
+            <Paragraph>{select[0].title}</Paragraph>
+            <img src={select[0].thumbnail} onClick={() =>{}} />
+            <Paragraph>Gênero: {select[0].genre}</Paragraph>
+            <Paragraph>Plataforma: {select[0].platform}</Paragraph>
+            <Paragraph>Descrição: {select[0].short_description}</Paragraph>
+            <h1 onLoad={pegaComent()}></h1>
             {comentarios.map((coment, id) => (
                 <Paper key={id}>
                     <h1>{coment.nome}</h1>

@@ -85,7 +85,7 @@ export const ListagemJogosPage = () => {
               <Paper key={id}>
                 <Paragraph>{jogo.title}</Paragraph>
                 <img src={jogo.thumbnail} alt="jogo" />
-                <Paragraph>{jogo.short_description}</Paragraph>
+                <Paragraph>{jogo.short_description.slice(0,120)}...</Paragraph>
                 <Botao value={jogo.id} handleClick={handleSalva}>Ver Mais</Botao>
                 
               </Paper>
