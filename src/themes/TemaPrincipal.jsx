@@ -1,6 +1,6 @@
 export const temaPrincipal = {
   color: {
-    backgroundHeader: "#FF8818",
+    backgroundHeader: "#801A86",
     backgroundPrincipal: "#FFF8F0",
     cardBackground: "#ffffff",
     successBackground: "#66BB6A",

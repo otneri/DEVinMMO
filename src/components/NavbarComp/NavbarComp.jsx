@@ -1,6 +1,6 @@
 // import {useLocation} from 'react-router-dom'
-import { LiStyled, NavStyled, UlStyled, AStyled } from "./NavbarComp.styled";
-import { Link } from "react-router-dom";
+import { LiStyled, NavStyled, UlStyled, Linkstld } from "./NavbarComp.styled";
+
 
 export const Navbar = () => {
   // const { pathname } = useLocation();
@@ -9,15 +9,11 @@ export const Navbar = () => {
     <NavStyled>
       <UlStyled>
         <LiStyled>
-          <Link to="/home">Inicio</Link>
+          <Linkstld to="/">INÍCIO</Linkstld>
         </LiStyled>
 
         <LiStyled>
-          <Link to="/devices">Dispositivos</Link>
-        </LiStyled>
-
-        <LiStyled>
-          <Link to="/perfil">Perfil</Link>
+          <Linkstld to="/noticias">NOTÍCIAS</Linkstld>
         </LiStyled>
       </UlStyled>
     </NavStyled>

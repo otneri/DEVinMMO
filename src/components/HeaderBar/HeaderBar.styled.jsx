@@ -13,6 +13,7 @@ export const HeaderStyled = styled.header`
 export const Div = styled.div`
   display: flex;
   gap: 1vh;
+  align-items: center;
 `;
 export const TitleHeaderStyled = styled.h1`
   color: white;

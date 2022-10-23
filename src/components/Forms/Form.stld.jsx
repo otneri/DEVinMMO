@@ -1,10 +1,18 @@
 import styled from "styled-components";
 
 export const FormStyle = styled.form`
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-gap: 2em;
-  margin: 2em 0em;
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 10px;
+  width: max-content;
+  padding: 1em;
+  background-color: beige;
+  margin: 3em 0em;
+
 `;
 
 export const SpanError = styled.span`

@@ -1,4 +1,4 @@
-import { Logo } from "../../assets/img";
+import { Logo } from "../Images/img";
 import { BotaoLogin } from "../Botoes/Botao";
 import { Div, HeaderStyled, TitleHeaderStyled } from "./HeaderBar.styled";
 import { Link } from "react-router-dom";
@@ -11,14 +11,11 @@ export const HeaderBar = () => {
     <HeaderStyled>
       <Div>
         <Logo />
-        <TitleHeaderStyled>Connect Lab</TitleHeaderStyled>
+        <TitleHeaderStyled>DevinMMO</TitleHeaderStyled>
       </Div>
 
-        <Navbar />
+      <Navbar />
 
-        <BotaoLogin>
-          <Link to="/">Login</Link>
-        </BotaoLogin>
 
     </HeaderStyled>
   );

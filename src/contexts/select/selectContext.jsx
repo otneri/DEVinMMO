@@ -17,5 +17,5 @@ export const SelectProvider = ({ children }) => {
 };
 
 SelectProvider.propTypes = {
-  children: PropTypes.object,
+  children: PropTypes.node,
 };

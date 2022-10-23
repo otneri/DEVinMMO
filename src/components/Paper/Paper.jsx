@@ -7,26 +7,13 @@ export const Paper = ({ children, handleclick }) => {
   return <PaperStyled onClick={handleclick}>{children}</PaperStyled>;
 };
 
-export const PaperListDevices = ({ children }) => {
-  return <>{children}</>;
+export const PaperListJogos = ({ children }) => {
+  return <DivPaperDeviceStyled>{children}</DivPaperDeviceStyled>;
 };
 
-export const PaperDevice = ({ handleclick }) => {
+export const PaperDevice = ({ children }) => {
   return (
-    <PaperStyled onClick={handleclick}>
-      <DivPaperDeviceStyled>
-        
-        <div>
-          <Paragraph>Lâmpada</Paragraph>
-          <Comodos>
-            <p>Casa</p> {`-`}
-            <p>Quarto</p> {`-`}
-            <p>ON</p>
-          </Comodos>
-        </div>
-        <BotaoOnOff>On</BotaoOnOff>
-      </DivPaperDeviceStyled>
-    </PaperStyled>
+    <>{children}</>
   );
 };
 
@@ -35,7 +22,7 @@ Paper.propTypes = {
   handleclick: Proptypes.func,
 };
 
-PaperListDevices.propTypes = {
+PaperListJogos.propTypes = {
   children: Proptypes.node,
 };
 

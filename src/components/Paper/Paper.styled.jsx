@@ -5,12 +5,9 @@ export const PaperStyled = styled.section`
   color: ${({ theme }) => theme.text.orange};
   display: flex;
   justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  border-radius: 10px;
+  align-items: flex-start;
+  gap: 10px;
   padding: 1em;
-  cursor: pointer;
 `;
 
 export const Comodos = styled.div`
@@ -22,7 +19,11 @@ export const Comodos = styled.div`
 
 export const DivPaperDeviceStyled = styled.div`
   display: flex;
+  
   align-items: center;
+  flex-direction: column;
+  width: 30em;
   justify-content: space-around;
-  gap: 1em;
+  gap: .5em;
+  margin: 2em;
 `;

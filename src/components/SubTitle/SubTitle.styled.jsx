@@ -1,9 +1,9 @@
 import styled from "styled-components";
 
-export const SubTitleStyled = styled.h2`
+export const SubTitleStyled = styled.h1`
   color: ${({theme})=> theme.text.orangedark};
   font-weight: bold;
-  font-size: medium;
+  font-size: large;
   margin: .3em 0em;
 `;
 

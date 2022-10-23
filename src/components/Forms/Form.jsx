@@ -3,10 +3,11 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { Paragraph } from "../../components/Paragraph/Paragraph";
 import {FormStyle, SpanError} from './Form.stld'
 import {Input, InputError} from '../Inputs/InputComp'
-import {ConteinerInput} from '../Inputs/InputComp.styled'
+import {ConteinerInput, DivSearchstld} from '../Inputs/InputComp.styled'
 import { useForm } from "react-hook-form";
 import { Botao } from "../../components/Botoes/Botao";
 import { useState } from "react";
+import { useComentario } from "../../contexts/comentarios/useComents";
 
 const validationSchema = yup.object({
     fullName: yup
@@ -20,6 +21,7 @@ const validationSchema = yup.object({
 export const Form = () => {
     
     const [coment, setComent] = useState([])
+    const {setComentariopost} = useComentario()
 
     const {
         handleSubmit,
@@ -42,6 +44,7 @@ export const Form = () => {
         coment.push(JSON.parse(pessoaJson))
         console.log(coment);
         localStorage.setItem("coments", JSON.stringify(coment))
+        setComentariopost(valores)
     }
 
     // const pegaComent = () => {
@@ -56,8 +59,9 @@ export const Form = () => {
 
 
       return (
-        <div>
+        <DivSearchstld>
         <FormStyle onSubmit={handleSubmit(saveComent,  onError)}>
+            <Paragraph>Deixe seu comentário!</Paragraph>
             <ConteinerInput>
             <Paragraph>Nome: </Paragraph>
             {errors?.fullName?.type ? (
@@ -117,7 +121,7 @@ export const Form = () => {
             <Botao handleClick={handleSubmit(saveComent, onError)}>Postar comentário</Botao>
 
         </FormStyle>
-    </div>
+    </DivSearchstld>
 
 
       )

@@ -4,12 +4,18 @@ import { Paper } from "../../components/Paper/Paper";
 import { Paragraph } from "../../components/Paragraph/Paragraph";
 import axios from "axios";
 import { Botao } from "../../components/Botoes/Botao";
+import { useNoticia } from "../../contexts/noticias/useNoticias";
+import { BannerNews } from "../../components/Images/img";
+import { InputSearch } from "../../components/Inputs/InputComp";
+import { Divtxtstld } from "../todosJogos/text.stld";
+
 
 
 
 export const NoticiasPage = () => {
   const [inicial, setInicial] = useState([]);
   const [noticias, setnoticias] = useState([]);
+  const {sitenoticia,setSitenoticia} = useNoticia('#')
 
   async function getListanoticias ()  {
 
@@ -38,6 +44,13 @@ export const NoticiasPage = () => {
   
   
   
+  function handleSite  ({target})  {
+    const novoSelect = noticias?.filter(noticia => 
+      noticia.article_url == target.value
+      )
+      return window.location.assign(novoSelect[0].article_url)  
+    }
+
  
  
   const handleChange = ({ target }) => {
@@ -56,23 +69,28 @@ export const NoticiasPage = () => {
 
   return (
     <>
-     <input type="text" onChange={handleChange} placeholder='Buscar' />
+      <InputSearch type="text" onChange={handleChange} placeholder='Buscar' />
 
-      <Grade onload={()=>{}}>
-        <Paragraph>Resultados: {!noticias? "Carregando":noticias.length}</Paragraph>
-        {!noticias ? (
-          <Paragraph>Carregando...</Paragraph>
-        ) :
-         (noticias?.map((noticia, id) => (
-            
+      <Divtxtstld>
+      <Paragraph>Resultados: {!noticias? "Carregando":noticias.length}</Paragraph>
+
+      </Divtxtstld>
+      <Grade >
+          {!noticias ? (
+            <Paragraph>Carregando...</Paragraph>
+          ) :
+          (noticias?.map((noticia, id) => (
+              
             <Paper key={id}>
-              <Paragraph>{noticia.title}</Paragraph>
-              <p>{noticia.short_description}</p>
-              <img src={noticia.thumbnail} alt="noticia" />
-              <Botao>Ver Mais</Botao>
-            </Paper>
-          ))
-        )}
+                <BannerNews children={noticia.thumbnail} alt="noticia" />
+                <div>
+                <Paragraph>{noticia.title}</Paragraph>
+                <Paragraph>{noticia.short_description}</Paragraph>
+                <Botao value={noticia.article_url} handleClick={handleSite}>  Ver mais</Botao>                         
+                </div>
+              </Paper>
+            ))
+          )}
       </Grade>
     </>
   );

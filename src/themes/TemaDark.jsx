@@ -1,6 +1,6 @@
 export const temaDark = {
   color: {
-    backgroundHeader: "#FF8818",
+    backgroundHeader: "#801A86",
     backgroundPrincipal: "#0a092c",
     cardBackground: "#393939",
     successBackground: "#66BB6A",

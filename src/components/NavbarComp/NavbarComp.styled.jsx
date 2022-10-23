@@ -1,4 +1,17 @@
 import styled from "styled-components";
+import { Link } from "react-router-dom";
+
+
+export const Linkstld = styled(Link)`
+    color: white;
+    font-size: larger;
+    
+    &:hover {
+    text-decoration: underline;
+    color: white;
+  }
+    
+`
 
 export const NavStyled = styled.nav`
   display: flex;

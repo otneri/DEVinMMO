@@ -1,13 +1,15 @@
 import { useState, useEffect } from "react";
-import { Grade } from "../../components/Grade/Grade";
-import { Paper } from "../../components/Paper/Paper";
+import { Grade, GradeJogos } from "../../components/Grade/Grade";
+import { Paper, PaperListJogos } from "../../components/Paper/Paper";
 import { Paragraph } from "../../components/Paragraph/Paragraph";
 import axios from "axios";
 import { Botao } from "../../components/Botoes/Botao";
 import { useSelect } from "../../contexts/select/useSelect";
 import {Mmo} from '../../services/apiMMO'
 import { Link } from "react-router-dom";
-import { useForm } from "react-hook-form";
+import { useForm } from "react-hook-form";  
+import { InputSearch } from "../../components/Inputs/InputComp";
+import { Divtxtstld } from "./text.stld";
 
 
 
@@ -71,29 +73,36 @@ export const ListagemJogosPage = () => {
   // LISTA DE DISPOSITIVOS
 
   return (
-    <>
-     <input type="text" onChange={handleChange} placeholder='Buscar'/>
 
-      <Grade >
+    
+    <>
+      <>
+      <InputSearch type="text" onChange={handleChange} placeholder='Buscar'/>
+      </>
+      <Divtxtstld>
+      
       <Paragraph>Resultados ({jogos.length})</Paragraph> 
-        
-        {!jogos ? (
-          <Paragraph>Carregando...</Paragraph>
-        ) :
-          ( 
-          jogos?.map((jogo, id) => (
-              
-              <Paper key={id}>
-                <Paragraph>{jogo?.title}</Paragraph>
-                <img src={jogo?.thumbnail} alt="jogo" />
-                <Paragraph>{jogo?.short_description.slice(0,120)}...</Paragraph>
-                <Botao value={jogo?.id} handleClick={handleSalva}><Link to='/detalhes'></Link>Ver mais</Botao>
+      </Divtxtstld>
+
+      <GradeJogos  >
+          
+          {!jogos ? (
+            <Paragraph>Carregando...</Paragraph>
+          ) :
+            ( 
+            jogos?.map((jogo, id) => (
                 
-              </Paper>
-            ))
-        ) 
-        }
-      </Grade>
+                <PaperListJogos key={id}>
+                  <Paragraph>{jogo?.title}</Paragraph>
+                  <img src={jogo?.thumbnail} alt="jogo" />
+                  <Paragraph>{jogo?.short_description.slice(0,120)}...</Paragraph>
+                  <Link to='/detalhes'><Botao value={jogo?.id} handleClick={handleSalva}>Ver mais</Botao></Link>
+                  
+                </PaperListJogos>
+              ))
+          ) 
+          }
+      </GradeJogos>
     </>
   );
 };
