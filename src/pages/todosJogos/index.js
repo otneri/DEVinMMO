@@ -1,0 +1,1 @@
+export { ListagemJogosPage} from './todosJogos'

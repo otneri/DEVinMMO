@@ -6,6 +6,8 @@ import axios from "axios";
 import { Botao } from "../../components/Botoes/Botao";
 import { useSelect } from "../../contexts/select/useSelect";
 import {Mmo} from '../../services/apiMMO'
+import { Link } from "react-router-dom";
+import { useForm } from "react-hook-form";
 
 
 
@@ -13,13 +15,13 @@ export const ListagemJogosPage = () => {
   const [inicial, setInicial] = useState([]);
   const [jogos, setJogos] = useState([]);
   const {select,setSelect} = useSelect()
-
+  const {handleSubmit} = useForm()
   async function getListaJogos ()  {
 
 
     const headers = {
-    "X-RapidAPI-Key": "03ae6adad5mshdc8fdce2d2447a6p17edf6jsn77e08ea260e9",
-    "X-RapidAPI-Host": "mmo-games.p.rapidapi.com",
+    "X-RapidAPI-Key": '03ae6adad5mshdc8fdce2d2447a6p17edf6jsn77e08ea260e9',
+    "X-RapidAPI-Host": 'mmo-games.p.rapidapi.com',
     }
   
     return  axios
@@ -45,27 +47,26 @@ export const ListagemJogosPage = () => {
   
   function handleSalva  ({target})  {
     const novoSelect = jogos?.filter(jogo => 
-      jogo.id == target.value
-    )
-    const salvaSelect = setSelect(novoSelect)
-    
-    
-    return salvaSelect;  
-    
-  }
-  
- 
-  const handleChange = ({ target }) => {
-    if (!target.value) {
-      setJogos(inicial);
-      return;
+      jogo.id == target?.value
+      )
+       const salvaSelect = setSelect(novoSelect)
+       
+       console.log(target.value)
+       return salvaSelect
     }
 
-    const filterJogos = jogos?.filter((jogo) =>
-      jogo.title.includes(target.value)
-    );
-    setJogos(filterJogos);
+    
+    const handleChange = ({ target }) => {
+      if (!target.value) {
+        setJogos(inicial);
+        return;
+      }
+       const filterJogos = jogos?.filter((jogo) =>
+        jogo.title.includes(target.value)
+      );
+      setJogos(filterJogos);
   };
+
 
   // LISTA DE DISPOSITIVOS
 
@@ -73,7 +74,7 @@ export const ListagemJogosPage = () => {
     <>
      <input type="text" onChange={handleChange} placeholder='Buscar'/>
 
-      <Grade onload={()=>{}}>
+      <Grade >
       <Paragraph>Resultados ({jogos.length})</Paragraph> 
         
         {!jogos ? (
@@ -83,10 +84,10 @@ export const ListagemJogosPage = () => {
           jogos?.map((jogo, id) => (
               
               <Paper key={id}>
-                <Paragraph>{jogo.title}</Paragraph>
-                <img src={jogo.thumbnail} alt="jogo" />
-                <Paragraph>{jogo.short_description.slice(0,120)}...</Paragraph>
-                <Botao value={jogo.id} handleClick={handleSalva}>Ver Mais</Botao>
+                <Paragraph>{jogo?.title}</Paragraph>
+                <img src={jogo?.thumbnail} alt="jogo" />
+                <Paragraph>{jogo?.short_description.slice(0,120)}...</Paragraph>
+                <Botao value={jogo?.id} handleClick={handleSalva}><Link to='/detalhes'></Link>Ver mais</Botao>
                 
               </Paper>
             ))

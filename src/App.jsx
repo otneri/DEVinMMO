@@ -1,20 +1,21 @@
-import {ListagemJogosPage} from './pages/todosJogos/todosJogos'
-import {DetalhesPage} from './pages/detalhes/detalhes'
+import {Rotas} from './routes/index'
 import { ThemeProvider } from "styled-components";
 import { temaDark, temaPrincipal } from "./themes";
-import { NoticiasPage } from './pages/noticias/noticias';
 import { SelectProvider } from './contexts/select/selectContext';
+import {BrowserRouter} from 'react-router-dom'
+import { ListagemJogosPage } from './pages';
 
 function App() {
  
 
   return (
+     <BrowserRouter>
     <ThemeProvider theme={temaPrincipal}>
         <SelectProvider>
-          <DetalhesPage/>
-        </SelectProvider>
-      
+          <Rotas/>
+        </SelectProvider>     
     </ThemeProvider>
+    </BrowserRouter>
   )
 }
 
